@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+}
+
+* {
+    color-scheme: dark;
+}
+
+#background-video {
+    width: 100%;
+    filter:blur(10px)
+}
