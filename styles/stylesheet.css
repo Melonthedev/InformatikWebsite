@@ -10,3 +10,9 @@ body {
     width: 100%;
     filter:blur(10px)
 }
+.header {
+    color: blueviolet;
+    text-decoration: overline(3px);
+    text-align: center;
+    text-decoration-color: aqua;
+}
