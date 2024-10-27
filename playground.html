@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" /> <!-- Google Fonts Icons (TODO: Specify only the icons we need)-->
+
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<div id="comparison" onmousemove="moveDivisor(event)">
+  <figure>
+    <div id="divisor"></div>
+  </figure>
+</div>
+
+      <style>
+        div#comparison {
+          width: 60vw;
+          height: 60vw;
+          max-width: 600px;
+          max-height: 600px;
+          overflow: hidden;
+        }
+        
+        div#comparison figure {
+          background-image: url(/media/3d_models/bad_benchy.png);
+          background-size: cover;
+          position: relative;
+          font-size: 0;
+          width: 100%;
+          height: 100%;
+          margin: 0;
+        }
+        
+        div#comparison figure>img {
+          position: relative;
+          width: 100%;
+        }
+        
+        div#comparison figure div {
+          background-color: rgba(17, 17, 17, 0.952);
+          background-image: url(/media/3d_models/good_benchy.png);
+          background-size: cover;
+          position: absolute;
+          width: 50%;
+          box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
+          overflow: hidden;
+          bottom: 0;
+          height: 100%;
+        }
+        
+        
+        </style>
+        
+        <script>
+        var divisor = document.getElementById("divisor");
+        var comparisonWidth = document.getElementById("comparison").clientWidth;
+        
+        function moveDivisor(e) {
+          divisor.style.width = (e.offsetX * 100 / comparisonWidth) + "%";
+        }
+            
+        </script>
+
+</body>
+</html>

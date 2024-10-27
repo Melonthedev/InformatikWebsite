@@ -1,18 +1,140 @@
-body {
-    margin: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap');
 
 * {
-    color-scheme: dark;
+    color-scheme: dark; /* scrollbars and browser UI in dark color theme */
+}
+
+body, html {
+    margin: 0; /* Remove default margin */
+    padding: 0;
+    background: transparent; /* Make Background transparent to let video through */
+  }
+
+.content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: white;
+    font-size: 2em;
+    font-family: Arial, sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    flex-direction: column;
+    overflow: hidden;
 }
 
 #background-video {
+    position: fixed;
+    left: 0;
+    top: 0;
+    object-fit: cover;
     width: 100%;
-    filter:blur(10px)
+    z-index: -1;
+    filter: blur(10px);
 }
-.header {
-    color: blueviolet;
-    text-decoration: overline(3px);
+
+.background {
+    margin-top: 50px;
+    height: 100vw;
+    width: 100%;
+    background-color: rgb(32, 33, 36);
+}
+
+.background::after {
+    content: "";
+    position: relative;
+    top: -50px;
+    left: -10px;
+    display: block;
+    width: 110%;
+    height: 100px;
+    background: inherit; 
+    filter: blur(10px); 
+}
+
+.main-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.scroll-icon {
+    font-size: 2em !important; /* Icon size */
+    margin-top: 20px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.title {
+    font-family: "Sixtyfour Convergence", Arial; /* font looks like layer lines on 3d-prints */
+    font-optical-sizing: auto;
+    font-style: normal;
+    color: white;
+    font-size: 2em;
     text-align: center;
-    text-decoration-color: aqua;
+    text-shadow: 3px 3px 5px black;
 }
+
+.sub-title {
+    color: white;
+}
+
+.benchy-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.benchy-comparison img {
+    width: 40%;
+    max-width: 300px;
+    flex-shrink: 1;
+}
+
+/* Show On Scroll */
+
+.show-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Kacheln */
+.tile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 50px;
+    margin-bottom: 30px;
+}
+.tile {
+    background-color: rgb(39, 39, 39);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.tile h2 {
+    margin-top: 0;
+}
+
+
