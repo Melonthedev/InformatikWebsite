@@ -1,2 +1,2 @@
 # InformatikWebsite
-https://prod.liveshare.vsengsaas.visualstudio.com/join?B07A2CBCC2D12393DA9A1BC2AA9DAD9D85EB
+https://prod.liveshare.vsengsaas.visualstudio.com/join?A4AF40498FCA411D6F5B5D267FACFFD6C776
