@@ -2,6 +2,7 @@
 
 * {
     color-scheme: dark; /* scrollbars and browser UI in dark color theme */
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body, html {
@@ -39,10 +40,11 @@ body, html {
     margin-top: 50px;
     height: 100vw;
     width: 100%;
-    background-color: rgb(32, 33, 36);
+    background-color: #141414;
+    z-index: 0;
 }
 
-.background::after {
+.background::before {
     content: "";
     position: relative;
     top: -50px;
@@ -77,7 +79,7 @@ body, html {
     }
 }
 
-.title {
+.maintitle {
     font-family: "Sixtyfour Convergence", Arial; /* font looks like layer lines on 3d-prints */
     font-optical-sizing: auto;
     font-style: normal;
@@ -85,6 +87,11 @@ body, html {
     font-size: 2em;
     text-align: center;
     text-shadow: 3px 3px 5px black;
+}
+
+.title {
+    text-align: center;
+    margin: 10px;
 }
 
 .sub-title {
@@ -138,3 +145,39 @@ body, html {
 }
 
 
+/* Benchy Comparison */
+div#comparison {
+    max-width: 100px;
+    width: 60vw;
+    height: 60vw;
+    max-width: 600px;
+    max-height: 600px;
+    overflow: hidden;
+}
+  
+div#comparison figure {
+    background-image: url(/media/3d_models/bad_benchy.png);
+    background-size: cover;
+    position: relative;
+    font-size: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+div#comparison figure>img {
+    position: relative;
+    width: 100%;
+}
+
+div#comparison figure div {
+    background-color: #141414;
+    background-image: url(/media/3d_models/good_benchy.png);
+    background-size: cover;
+    position: absolute;
+    width: 50%;
+    box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    bottom: 0;
+    height: 100%;
+}
