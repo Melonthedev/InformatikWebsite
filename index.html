@@ -20,35 +20,44 @@
 
     <img src="./media/printer.png" width="300px" class="bad-benchy show-on-scroll">
     <h3 class="sub-title show-on-scroll">Alles was du über 3D-Druck wissen musst!</h2>
-  
-    <div style="padding-left: 40%;" class="background">
-      <!--margin-top kaputt;fix?-->
-      <div id="comparison" onmousemove="moveDivisor(event)">
-        <figure>
-          <div id="divisor"></div>
+    
+    
+    <div class="background">
+      <div class="center">
+        <div id="comparison" onmousemove="moveDivisor(event)">
+          <figure>
+            <div id="divisor">
+              <div id="seperator"></div>
+            </div>
         </figure>
+        </div>
       </div>
-    </div>
-    
-    
-    <div class="background2">
+
       <div class="tile-container">
-        <div class="tile show-on-scroll">
-          <h2>Materialien</h2>
-          <p>Alles über die unterschiedlichen 3D-Druck-Materialien.</p>
-        </div>
-        <div class="tile show-on-scroll">
-          <h2>Drucktechniken</h2>
-          <p>Ein Überblick über die wichtigsten 3D-Druckverfahren.</p>
-        </div>
-        <div class="tile show-on-scroll">
-          <h2>3D-Modelle</h2>
-          <p>Erfahre, wie du 3D-Modelle erstellst und druckst.</p>
-        </div>
-        <div class="tile show-on-scroll">
-          <h2>Nachbearbeitung</h2>
-          <p>Tipps und Tricks zur Nachbearbeitung von 3D-Druckteilen.</p>
-        </div>
+        <a href="playground.html">
+          <div class="tile show-on-scroll">
+            <h2>Drucktechniken</h2>
+            <p>Ein Überblick über die wichtigsten 3D-Druckverfahren.</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="tile show-on-scroll">
+            <h2>Aufbau</h2>
+            <p>Alles was du über die Komponenten deines FDM-Druckers wissen musst.</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="tile show-on-scroll">
+            <h2>Materialien</h2>
+            <p>Alles über die unterschiedlichen 3D-Druck-Materialien.</p>
+          </div>
+        </a>
+        <a href="">
+          <div class="tile show-on-scroll">
+            <h2>3D-Modelle</h2>
+            <p>Erfahre, wie du 3D-Modelle erstellst und druckst.</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -72,13 +81,11 @@
   </script>
   <script>
     var divisor = document.getElementById("divisor");
-    var comparisonWidth = document.getElementById("comparison").clientWidth;
-    
     function moveDivisor(e) {
+      var comparisonWidth = document.getElementById("comparison").clientWidth;
       divisor.style.width = (e.offsetX * 100 / comparisonWidth) + "%";
       console.log((e.offsetX * 100 / comparisonWidth) + "%")
     }
-        
   </script>
 </body>
 </html>
