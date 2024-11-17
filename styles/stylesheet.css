@@ -37,6 +37,8 @@ body, html {
     position: fixed;
     left: 0;
     top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     object-fit: cover;
     width: 100%;
     z-index: -1;
@@ -76,6 +78,8 @@ body, html {
     font-size: 2em !important; /* Icon size */
     margin-top: 20px;
     animation: bounce 1.5s infinite;
+    text-align: center;
+    width: 100%;
 }
 
 @keyframes bounce {
@@ -104,6 +108,13 @@ body, html {
 
 .sub-title {
     color: white;
+    text-align: center;
+}
+
+.animation-title {
+    text-decoration: underline;
+    font-size: 1.8em;
+    margin-top: 400px;
 }
 
 /* Show On Scroll */
@@ -146,18 +157,6 @@ body, html {
 
 
 /* Benchy Comparison */
-/*.benchy-comparison {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-}
-
-.benchy-comparison img {
-    width: 40%;
-    max-width: 300px;
-    flex-shrink: 1;
-}*/
 
 #comparison {
     max-width: 100px;
@@ -167,10 +166,11 @@ body, html {
     max-height: 600px;
     overflow: hidden;
     padding-left: 0%;
+    margin-bottom: 50px;
 }
   
 #comparison figure {
-    background-image: url(/media/3d_models/good_benchy.png);
+    background-image: url(/media/benchy/good_benchy.png);
     background-size: cover;
     position: relative;
     width: 100%;
@@ -187,7 +187,7 @@ body, html {
 
 #divisor {
     background-color: #141414;
-    background-image: url(/media/3d_models/bad_benchy.png);
+    background-image: url(/media/benchy/bad_benchy.png);
     background-size: cover;
     position: absolute;
     width: 50%;
@@ -207,24 +207,36 @@ body, html {
     border-radius: 10px;
 }
 
+
+/* Categories */
+
+
+
+
+
+
 /* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #152427;
     text-align: center;
     padding: 20px 0;
-    font-family: 'Arial', sans-serif;
-    font-size: 14px;
+    font-size: 20px;
+    width: 100%;
+}
+
+footer p {
+    font-family: 'Monaco', 'Arial', sans-serif;
 }
   
 footer a {
-    color: #1e90ff;
+    color: #0ae4e4;
     text-decoration: none;
 }
 
 footer a:hover {
     text-decoration: underline;
 }
+
 
 .filament-roll {
     width: 100%;
@@ -236,6 +248,7 @@ footer a:hover {
     width: 100px;
     height: 100px;
     animation: roll 10s linear infinite;
+    margin-left: -100px;
 }
 
 #filamentpath {
@@ -254,11 +267,13 @@ footer a:hover {
     }
 }
 @keyframes filamentpath {
-    0%, 5% {
+    0% {
+        margin-left: -100px;
         width: 0;
         transform: translateY(0);
     }
     95% {
+        margin-left: 0px;
         width: 100%;
         transform: translateY(0);
     }
