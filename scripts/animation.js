@@ -1,3 +1,5 @@
+
+
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
@@ -28,7 +30,7 @@ scene.add(light);
 // Load Models
 const loader = new GLTFLoader();
 
-loader.load('http://127.0.0.1:5502/media/3d_models/3d_printer.glb', function (gltf) {
+loader.load('/media/3d_models/3d_printer.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
 	model.rotation.y = 4;
@@ -38,7 +40,7 @@ loader.load('http://127.0.0.1:5502/media/3d_models/3d_printer.glb', function (gl
 
 
 var benchy;
-loader.load('http://127.0.0.1:5502/media/3d_models/3d_benchy.glb', function (gltf) {
+loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
 	model.position.x = 0.3;
