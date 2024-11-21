@@ -210,9 +210,10 @@ body, html {
 /* Animated Categories */
 
 .categorytile {
-    position: relative;
-    top: 500px;
-    left: 100px;
+    display: none;
+    position: fixed;
+    top: 20%;
+    left: 5%;
 }
 
 #threejsanimation {

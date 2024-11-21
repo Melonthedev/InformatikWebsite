@@ -1,9 +1,9 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
-
 const animationContainer = document.querySelector('#animationcontainer');
 const animationElement = document.querySelector('#threejsanimation');
+const category = document.querySelector("#category");
 
 // Create Scene
 const scene = new THREE.Scene();
@@ -43,7 +43,6 @@ loader.load('/media/3d_models/3d_printer.glb', function (gltf) {
 	console.error(error);
 });
 
-
 var benchy;
 loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 	var model = gltf.scene;
@@ -64,18 +63,19 @@ loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
 
-
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
 		console.log(entry.boundingClientRect.top)
         if (entry.boundingClientRect.top <= 0) {
-            console.log("Animationcontainer oben dran");
+            console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
+			category.style.display = "block";
 			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
-			document.querySelector('#threejsanimation').style.position = "static";
-			animationContainer.style.marginBottom = "00px";
+			animationElement.style.position = "static";
+			category.style.display = "none";
+			animationContainer.style.marginBottom = "1000px";
 		}
     });
 }, { 
@@ -169,7 +169,14 @@ function slideDefault() {
 		y: 0.25,
 		duration: 1.5
 	});
-
+	gsap.timeline()
+		.to(category, { position: "fixed", x: -200, opacity: 0, duration: 0.5 })
+		.call(() => {
+			category.querySelector("#categoryTitle").innerText = "3D-Druck in 4 Kategorien";
+		})
+		.fromTo(category, 
+		{ position: "fixed", x: 200, opacity: 0 }, 
+		{ position: "fixed", x: 0, opacity: 1, duration: 0.5 }); 
 }
 function slidePrintMethods() {
 	gsap.to(camera.position, {
@@ -190,6 +197,14 @@ function slidePrintMethods() {
 		y: 0.25,
 		duration: 1.5
 	});
+	gsap.timeline()
+		.to(category, { position: "fixed", x: -200, opacity: 0, duration: 0.5 })
+		.call(() => {
+			category.querySelector("#categoryTitle").innerText = "3D-Druck in 4 Kategorien";
+		})
+		.fromTo(category, 
+		{ position: "fixed", x: 200, opacity: 0 }, 
+		{ position: "fixed", x: 0, opacity: 1, duration: 0.5 }); 
 }
 function slideAssembly() {
 	gsap.to(camera.position, {
@@ -240,8 +255,8 @@ function slideModels() {
 	});
 	gsap.to(camera.rotation, {
 		y: 0,
-		z: camera.rotation.z  - 0,
-		x: camera.rotation.x  - 0.4,
+		z: 0,
+		x: -0.4,
 		duration: 1.5
 	});
 	gsap.to(benchy.position, {
