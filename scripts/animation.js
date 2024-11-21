@@ -54,51 +54,12 @@ loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 	model.scale.set(0.003, 0.003, 0.003);
 	model.rotation.y = 4;
 	benchy = model;
+	slideDefault();
 }, undefined, function (error) {
 	console.error(error);
 });
-
-
-
-// HELL NAH
-var prevScrollY = 0;
-window.onscroll = (event) => {
-	var distance = renderer.domElement.getBoundingClientRect();
-	//console.log(distance.top);
-	if (prevScrollY < window.scrollY) {
-		// Down Scroll
-		if (distance.top <= -10 && slideIndex < slideMap.length - 1) {
-			//console.log("STOP");
-			/*window.scrollTo(0, prevScrollY)
-			window.addEventListener('wheel', preventScroll, { passive: false });
-			window.setTimeout(() => {
-				window.removeEventListener('wheel', preventScroll);
-			}, 1000)*/
-		}
-	} else {
-		// Up Scroll
-		if (distance.top >= 10 && slideIndex > 0) {
-			//console.log("STOP");
-			/*window.scrollTo(0, window.scrollY + distance.top)
-			window.addEventListener('wheel', preventScroll, { passive: false });
-			window.setTimeout(() => {
-				window.removeEventListener('wheel', preventScroll);
-			}, 1000)*/
-		}
-	}
-	prevScrollY = window.scrollY;
-}
-
-function preventScroll(event) {
-	event.preventDefault();
-	event.stopPropagation();
-}
-
-
 // Handle Slide Switching & Scrolling
-slideDefault();
 
-var isSwitching = false;
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
 
@@ -106,12 +67,11 @@ var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, s
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.boundingClientRect.top <= 0) {
-            console.log('Element oben dran');
+            console.log("Animationcontainer oben dran");
 			document.querySelector('#threejsanimation').style.position = "fixed";
         } else {
-			console.log('Element ab')
+			console.log("Animationcontainer ab")
 			document.querySelector('#threejsanimation').style.position = "static";
-			//keyframes.forEach(keyframe => keyframesObserver.unobserve(keyframe));
 		}
     });
 }, { 
@@ -199,6 +159,12 @@ function slideDefault() {
 		x: 0,
 		duration: 1.5
 	}); 
+	gsap.to(benchy.position, {
+		z: -0.4,
+		x: 0.3,
+		y: 0.25,
+		duration: 1.5
+	});
 }
 function slidePrintMethods() {
 	gsap.to(camera.position, {
@@ -213,6 +179,12 @@ function slidePrintMethods() {
 		x: 0,
 		duration: 1.5
 	});
+	gsap.to(benchy.position, {
+		z: -0.4,
+		x: 0.3,
+		y: 0.25,
+		duration: 1.5
+	});
 }
 function slideAssembly() {
 	gsap.to(camera.position, {
@@ -222,9 +194,15 @@ function slideAssembly() {
 		duration: 1.5
 	});
 	gsap.to(camera.rotation, {
-		y: camera.rotation.y,
-		z: camera.rotation.z  - 0.8,
-		x: camera.rotation.x  - 1.3,
+		y: -0.7,
+		z: -0.8,
+		x: -1.3,
+		duration: 1.5
+	});
+	gsap.to(benchy.position, {
+		z: -0.4,
+		x: 0.3,
+		y: 0.25,
 		duration: 1.5
 	});
 }
