@@ -13,7 +13,7 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(animationContainer.clientWidth, window.innerHeight);
 animationElement.appendChild(renderer.domElement);
 
-// Add Colored Base Plate
+// Add Textured Base Plate
 const planeGeometry = new THREE.PlaneGeometry(10, 10);
 //const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x142326 });
 const textureLoader = new THREE.TextureLoader();
@@ -58,20 +58,24 @@ loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 }, undefined, function (error) {
 	console.error(error);
 });
-// Handle Slide Switching & Scrolling
 
+
+// Handle Slide Switching & Scrolling
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
 
 
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
+		console.log(entry.boundingClientRect.top)
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer oben dran");
-			document.querySelector('#threejsanimation').style.position = "fixed";
+			animationElement.style.position = "fixed";
+			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
 			document.querySelector('#threejsanimation').style.position = "static";
+			animationContainer.style.marginBottom = "00px";
 		}
     });
 }, { 
@@ -165,6 +169,7 @@ function slideDefault() {
 		y: 0.25,
 		duration: 1.5
 	});
+
 }
 function slidePrintMethods() {
 	gsap.to(camera.position, {

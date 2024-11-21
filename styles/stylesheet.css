@@ -207,7 +207,7 @@ body, html {
 }
 
 
-/* Categories */
+/* Animated Categories */
 
 .categorytile {
     position: relative;
@@ -219,13 +219,11 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    opacity: 0.5
+    opacity: 1
 }
 
 #animationcontainer {
-    /*height: 300vh;*/
     width: 100%;
-    margin-bottom: 50px;
 }
 
 .keyframe {
