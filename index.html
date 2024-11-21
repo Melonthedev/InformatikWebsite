@@ -61,16 +61,15 @@
         </a>
       </div>-->
 
-      <h3 class="animation-title sub-title show-on-scroll">3D-Druck in 4 Kategorien</h2>
+
+
       <span class="scroll-icon material-symbols-outlined">keyboard_double_arrow_down</span>
       <div id="animationcontainer">
-        <div class="categorytile">
-          <h1>3D-Druckverfahren</h1>
+        <!--<div class="categorytile">
+          <h1>3D-Druck in 4 Kategorien</h1>
           <p>Überblick, über die verschiedenen Verfahren des 3D-Drucks</p>
           <button>Zur Seite</button>
-        </div>
-
-
+        </div>-->
       </div>
 
       <!--<div class="filament-roll">
@@ -95,31 +94,24 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script type="module" src="/scripts/animation.js"></script>
-
   <script> 
-    const tiles = document.querySelectorAll('.show-on-scroll');
+    const elements = document.querySelectorAll('.show-on-scroll');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('show');
-        } else {
-          //entry.target.classList.remove('show');
         }
       });
     }, {
       threshold: 0.4
     });
-
-    tiles.forEach(tile => {
-      observer.observe(tile);
-    });
+    elements.forEach(element => observer.observe(element));
   </script>
   <script>
     var divisor = document.getElementById("divisor");
     function moveDivisor(e) {
       var comparisonWidth = document.getElementById("comparison").clientWidth;
       divisor.style.width = (e.offsetX * 100 / comparisonWidth) + "%";
-      console.log((e.offsetX * 100 / comparisonWidth) + "%")
     }
   </script>
 </body>

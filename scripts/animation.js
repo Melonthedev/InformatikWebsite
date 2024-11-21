@@ -1,19 +1,24 @@
-
-
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+
+const animationContainer = document.querySelector('#animationcontainer');
+const animationElement = document.querySelector('#threejsanimation');
 
 // Create Scene
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
 const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
-document.body.querySelector("#animationcontainer").appendChild(renderer.domElement);
+renderer.setSize(animationContainer.clientWidth, window.innerHeight);
+animationElement.appendChild(renderer.domElement);
 
 // Add Colored Base Plate
 const planeGeometry = new THREE.PlaneGeometry(10, 10);
-const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x142326 });
+//const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x142326 });
+const textureLoader = new THREE.TextureLoader();
+const planeTexture = textureLoader.load("/media/plate_texture.jpg")
+const planeMaterial = new THREE.MeshBasicMaterial({ map:  planeTexture});
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
 plane.position.y = -0.15;
@@ -54,30 +59,31 @@ loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 });
 
 
-// Handle Scrolling
+
+// HELL NAH
 var prevScrollY = 0;
 window.onscroll = (event) => {
 	var distance = renderer.domElement.getBoundingClientRect();
-	console.log(distance.top);
+	//console.log(distance.top);
 	if (prevScrollY < window.scrollY) {
 		// Down Scroll
 		if (distance.top <= -10 && slideIndex < slideMap.length - 1) {
-			console.log("STOP");
-			window.scrollTo(0, prevScrollY)
+			//console.log("STOP");
+			/*window.scrollTo(0, prevScrollY)
 			window.addEventListener('wheel', preventScroll, { passive: false });
 			window.setTimeout(() => {
 				window.removeEventListener('wheel', preventScroll);
-			}, 1000)
+			}, 1000)*/
 		}
 	} else {
 		// Up Scroll
 		if (distance.top >= 10 && slideIndex > 0) {
-			console.log("STOP");
-			window.scrollTo(0, window.scrollY + distance.top)
+			//console.log("STOP");
+			/*window.scrollTo(0, window.scrollY + distance.top)
 			window.addEventListener('wheel', preventScroll, { passive: false });
 			window.setTimeout(() => {
 				window.removeEventListener('wheel', preventScroll);
-			}, 1000)
+			}, 1000)*/
 		}
 	}
 	prevScrollY = window.scrollY;
@@ -89,17 +95,64 @@ function preventScroll(event) {
 }
 
 
-// Handle Slide Switching
-
-renderer.domElement.onwheel = switchSlide;
-
+// Handle Slide Switching & Scrolling
 slideDefault();
 
 var isSwitching = false;
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
 
-function switchSlide(event) {
+
+const containerObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.boundingClientRect.top <= 0) {
+            console.log('Element oben dran');
+			document.querySelector('#threejsanimation').style.position = "fixed";
+        } else {
+			console.log('Element ab')
+			document.querySelector('#threejsanimation').style.position = "static";
+			//keyframes.forEach(keyframe => keyframesObserver.unobserve(keyframe));
+		}
+    });
+}, { 
+    root: null,
+    threshold: 0,
+	rootMargin: '0px 0px -100% 0px'
+});
+containerObserver.observe(animationContainer);
+
+var passed = false;
+const keyframesObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+		if (!entry.isIntersecting) {
+			var index = entry.target.dataset.index;
+			if (entry.boundingClientRect.top < 0 && slideIndex != index) {
+				console.log("[Keyframe] Change to Slide " + index);
+				slideMap[index]();
+				slideIndex = index;
+			} else if (passed && index > 0 && slideIndex != (index - 1)) {
+				index--;
+				console.log("[Keyframe] Change to Slide " + index);
+				slideMap[index]();
+				slideIndex = index;
+			}
+			passed = false;
+		} else {
+			passed = true;
+		}
+    });
+}, { 
+    root: null,
+    threshold: 0,
+	rootMargin: '0px 0px -100% 0px'
+});
+var keyframes = document.querySelectorAll(".keyframe");
+keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
+
+
+
+/*renderer.domElement.onwheel = handleEvent;
+function handleEvent(event) {
 	var distance = event.target.getBoundingClientRect();
 	var scrollDistance = event.deltaY;
 	//console.log("TOP: " + distance.top + " BOTTOM: " + distance.bottom)
@@ -107,23 +160,31 @@ function switchSlide(event) {
 		event.preventDefault();
 		return;
 	}
+	// Don't switch when container is not fully visible
 	if (distance.top < -10 ) return;
 	if (distance.top > 10 ) return;
-
+	var backwards = false;
 	if (scrollDistance < 0) {
+		backwards = true;
+	}
+	//switchSlide(backwards);
+	//event.preventDefault(); // STOP SCROLLING
+}
+
+function switchSlide(backwards) {
+	if (backwards) {
 		if (slideIndex <= 0) return;
 		slideIndex--;
-	} else if (scrollDistance > 0) {
+	} else {
 		if (slideIndex >= slideMap.length - 1) return;
 		slideIndex++;
 	}
 
-	event.preventDefault();
 	console.log("Switching to slide " + slideIndex);
 	slideMap[slideIndex]();
 	isSwitching = true;
 	setTimeout(() => isSwitching = false, 500);
-}
+}*/
 
 function slideDefault() {
 	gsap.to(camera.position, {

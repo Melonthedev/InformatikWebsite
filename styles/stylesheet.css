@@ -130,9 +130,9 @@ body, html {
 }
 
 /* Kacheln */
-.tile-container {
+/*.tile-container {
     display: grid;
-    grid-template-columns: auto; /*repeat(auto-fill, minmax(300px, 1fr))*/
+    grid-template-columns: auto; /*repeat(auto-fill, minmax(300px, 1fr))*//*
     gap: 20px;
     padding: 10%;
     margin-bottom: 30px;
@@ -152,8 +152,7 @@ body, html {
 
 .tile h2 {
     margin-top: 0;
-}
-
+}*/
 
 
 /* Benchy Comparison */
@@ -216,8 +215,22 @@ body, html {
     left: 100px;
 }
 
+#threejsanimation {
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.5
+}
 
+#animationcontainer {
+    /*height: 300vh;*/
+    width: 100%;
+    margin-bottom: 50px;
+}
 
+.keyframe {
+    margin-bottom: 400px;
+}
 
 /* Footer */
 footer {
@@ -240,7 +253,6 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
-
 
 .filament-roll {
     width: 100%;
