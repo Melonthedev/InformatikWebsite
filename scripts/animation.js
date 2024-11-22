@@ -54,6 +54,8 @@ loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
 	model.rotation.y = 4;
 	benchy = model;
 	slideDefault();
+	var keyframes = document.querySelectorAll(".keyframe");
+keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 }, undefined, function (error) {
 	console.error(error);
 });
@@ -65,16 +67,17 @@ var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, s
 
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-		console.log(entry.boundingClientRect.top)
+		//console.log(entry.boundingClientRect.top)
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
-			category.style.display = "block";
+			category.style.display = "";
+			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
 			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
 			animationElement.style.position = "static";
-			category.style.display = "none";
+			//category.style.display = "none";
 			animationContainer.style.marginBottom = "1000px";
 		}
     });
@@ -110,45 +113,7 @@ const keyframesObserver = new IntersectionObserver((entries) => {
     threshold: 0,
 	rootMargin: '0px 0px -100% 0px'
 });
-var keyframes = document.querySelectorAll(".keyframe");
-keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 
-
-
-/*renderer.domElement.onwheel = handleEvent;
-function handleEvent(event) {
-	var distance = event.target.getBoundingClientRect();
-	var scrollDistance = event.deltaY;
-	//console.log("TOP: " + distance.top + " BOTTOM: " + distance.bottom)
-	if (isSwitching) {
-		event.preventDefault();
-		return;
-	}
-	// Don't switch when container is not fully visible
-	if (distance.top < -10 ) return;
-	if (distance.top > 10 ) return;
-	var backwards = false;
-	if (scrollDistance < 0) {
-		backwards = true;
-	}
-	//switchSlide(backwards);
-	//event.preventDefault(); // STOP SCROLLING
-}
-
-function switchSlide(backwards) {
-	if (backwards) {
-		if (slideIndex <= 0) return;
-		slideIndex--;
-	} else {
-		if (slideIndex >= slideMap.length - 1) return;
-		slideIndex++;
-	}
-
-	console.log("Switching to slide " + slideIndex);
-	slideMap[slideIndex]();
-	isSwitching = true;
-	setTimeout(() => isSwitching = false, 500);
-}*/
 
 function slideDefault() {
 	gsap.to(camera.position, {
@@ -169,14 +134,7 @@ function slideDefault() {
 		y: 0.25,
 		duration: 1.5
 	});
-	gsap.timeline()
-		.to(category, { position: "fixed", x: -200, opacity: 0, duration: 0.5 })
-		.call(() => {
-			category.querySelector("#categoryTitle").innerText = "3D-Druck in 4 Kategorien";
-		})
-		.fromTo(category, 
-		{ position: "fixed", x: 200, opacity: 0 }, 
-		{ position: "fixed", x: 0, opacity: 1, duration: 0.5 }); 
+	setSlideInfo("3D-Druck in 4 Kategorien", "Die wichtigsten Aspekte des 3D-Drucks in 4 Kategorien");
 }
 function slidePrintMethods() {
 	gsap.to(camera.position, {
@@ -197,14 +155,7 @@ function slidePrintMethods() {
 		y: 0.25,
 		duration: 1.5
 	});
-	gsap.timeline()
-		.to(category, { position: "fixed", x: -200, opacity: 0, duration: 0.5 })
-		.call(() => {
-			category.querySelector("#categoryTitle").innerText = "3D-Druck in 4 Kategorien";
-		})
-		.fromTo(category, 
-		{ position: "fixed", x: 200, opacity: 0 }, 
-		{ position: "fixed", x: 0, opacity: 1, duration: 0.5 }); 
+	setSlideInfo("Druckmethoden", "Überblick über die verschiedenen Verfahren des 3D-Drucks", "./sites/techniken.html");
 }
 function slideAssembly() {
 	gsap.to(camera.position, {
@@ -225,6 +176,7 @@ function slideAssembly() {
 		y: 0.25,
 		duration: 1.5
 	});
+	setSlideInfo("Aufbau & Hardware", "Wie funktioniert das ganze eigentlich?", "./sites/aufbau.html");
 }
 function slideFilament() {
 	gsap.to(camera.position, {
@@ -245,6 +197,7 @@ function slideFilament() {
 		y: 0.25,
 		duration: 1.5
 	});
+	setSlideInfo("Filament", "Mit welchem Material kann gedruckt werden? Was sind Vor- und Nachteile?", "./sites/techniken.html");
 }
 function slideModels() {
 	gsap.to(camera.position, {
@@ -265,7 +218,30 @@ function slideModels() {
 		y: 1.3,
 		duration: 1.5
 	});
+	setSlideInfo("3D-Modelle", "Was kann man alles drucken? Von der 3D-Datei zum Gegenstand", "./sites/3D-modelle.html");
 }
+
+function setSlideInfo(title, details, pageLink) {
+	gsap.timeline().fromTo(category, 
+		{ position: "fixed", xPercent: 10, yPercent: 50, opacity: 1 }, 
+		{ position: "fixed", xPercent: -20, opacity: 0, duration: 0.5 })
+	.call(() => {
+		category.querySelector("#categoryTitle").innerText = title;
+		category.querySelector("#categoryDetails").innerText = details;
+		var categoryPageLink = category.querySelector("#categoryPageLink");
+		categoryPageLink
+		if (pageLink == null) {
+			categoryPageLink.style.display = "none";
+		} else {
+			categoryPageLink.href = pageLink;
+			categoryPageLink.style.display = "";
+		} 
+	})
+	.fromTo(category, 
+		{ position: "fixed", xPercent: 80, opacity: 0 }, 
+		{ position: "fixed", xPercent: 10, yPercent: 50, opacity: 1 }); 
+}
+
 
 // Animation Loop
 function animate() {
