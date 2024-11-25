@@ -155,7 +155,7 @@ function slidePrintMethods() {
 		y: 0.25,
 		duration: 1.5
 	});
-	setSlideInfo("Druckmethoden", "Überblick über die verschiedenen Verfahren des 3D-Drucks", "./sites/techniken.html");
+	setSlideInfo("Druckmethoden", "Überblick über die verschiedenen Verfahren des 3D-Drucks", "./sites/print-methods");
 }
 function slideAssembly() {
 	gsap.to(camera.position, {
@@ -176,7 +176,7 @@ function slideAssembly() {
 		y: 0.25,
 		duration: 1.5
 	});
-	setSlideInfo("Aufbau & Hardware", "Wie funktioniert das ganze eigentlich?", "./sites/aufbau.html");
+	setSlideInfo("Aufbau & Hardware", "Wie funktioniert das ganze eigentlich?", "./sites/printer-assembly");
 }
 function slideFilament() {
 	gsap.to(camera.position, {
@@ -197,7 +197,7 @@ function slideFilament() {
 		y: 0.25,
 		duration: 1.5
 	});
-	setSlideInfo("Filament", "Mit welchem Material kann gedruckt werden? Was sind Vor- und Nachteile?", "./sites/techniken.html");
+	setSlideInfo("Filament", "Mit welchem Material kann gedruckt werden? Was sind Vor- und Nachteile?", "./sites/materials-filament");
 }
 function slideModels() {
 	gsap.to(camera.position, {
@@ -218,7 +218,7 @@ function slideModels() {
 		y: 1.3,
 		duration: 1.5
 	});
-	setSlideInfo("3D-Modelle", "Was kann man alles drucken? Von der 3D-Datei zum Gegenstand", "./sites/3D-modelle.html");
+	setSlideInfo("3D-Modelle", "Was kann man alles drucken? Von der 3D-Datei zum Gegenstand", "./sites/3d-models");
 }
 
 function setSlideInfo(title, details, pageLink) {
