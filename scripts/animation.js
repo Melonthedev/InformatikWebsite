@@ -218,7 +218,7 @@ function slideModels() {
 		y: 1.3,
 		duration: 1.5
 	});
-	setSlideInfo("3D-Modelle", "Was kann man alles drucken? Von der 3D-Datei zum Gegenstand", "./sites/3d-models");
+	setSlideInfo("Druckablauf", "Wie geht man vor? Von der 3D-Datei zum Gegenstand", "./sites/3d-printing");
 }
 
 function setSlideInfo(title, details, pageLink) {

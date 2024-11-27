@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/stylesheet.css">
     <link rel="shortcut icon" href="./media/icon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" /> <!-- Google Fonts Icons (TODO: Specify only the icons we need)-->
-    <!--https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=home,palette,settings&display=block-->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title>3D-Druck</title>
 </head>
 <body>
   <video src="media/background-video.mp4" id="background-video" autoplay muted loop></video>
-  <div class="content">
-    <div class="main-view">
+  <div class="content flex-container">
+
+    <div class="main-view flex-container">
       <h1 class="main-title">3D-Druck</h1>
       <span class="scroll-icon material-symbols-outlined">keyboard_double_arrow_down</span> <!-- Google Fonts Icon -->
     </div>
@@ -20,19 +20,18 @@
     <img src="./media/printer.png" width="300px" class="show-on-scroll" alt="Prusa 3D-printer">
     <h3 class="sub-title show-on-scroll">Alles was du über 3D-Druck wissen musst!</h2>
     
-    <div class="background">
-      <div class="center">
-        <div id="comparison" onmousemove="moveDivisor(event)">
-          <figure>
-            <div id="divisor">
-              <div id="seperator"></div>
-            </div>
-          </figure>
-        </div>
+    <div class="background flex-container">
+      <div id="comparison">
+        <figure>
+          <div id="divisor">
+            <div id="seperator"></div>
+          </div>
+        </figure>
       </div>
       <h3 class="sub-title show-on-scroll">Und wie du das Beste aus deinem Drucker raus holst</h3>
       <span class="scroll-icon material-symbols-outlined">keyboard_double_arrow_down</span> <!-- Google Fonts Icon -->
     </div>
+
     <div id="animationcontainer">
       <div id="threejsanimation">
         <div id="category">
@@ -57,10 +56,8 @@
     </div>-->
   </div>
   <footer>
-    <p>&copy; 2024 Ferdinand & Marlon | <a href="/about">Über uns</a></p>
+    <p>&copy; 2024 Ferdinand & Marlon | <a href="./about">Über uns</a></p>
   </footer>
-
-
 
   <script type="importmap">
     {
@@ -71,7 +68,7 @@
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script type="module" src="/scripts/animation.js"></script>
+  <script type="module" src="./scripts/animation.js"></script>
   <script> 
     const elements = document.querySelectorAll('.show-on-scroll');
     const observer = new IntersectionObserver(entries => {
@@ -86,11 +83,11 @@
     elements.forEach(element => observer.observe(element));
   </script>
   <script>
-    var divisor = document.getElementById("divisor");
-    function moveDivisor(e) {
-      var comparisonWidth = document.getElementById("comparison").clientWidth;
-      divisor.style.width = (e.offsetX * 100 / comparisonWidth) + "%";
-    }
+    var comparison = document.getElementById("comparison");
+    comparison.onmousemove = (e) => {
+      var comparisonWidth = comparison.clientWidth;
+      document.getElementById("divisor").style.width = (e.offsetX * 100 / comparisonWidth) + "%";
+    };
   </script>
 </body>
 </html>
