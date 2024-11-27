@@ -3,61 +3,250 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/playground.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/stylesheet.css">
+    <link rel="shortcut icon" href="../../media/icon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title>Druckmethoden - 3D-Druck</title>
 </head>
-<body>
-    <p>
-       <h1>1. Fused Deposition Modeling (FDM) / Fused Filament Fabrication (FFF)</h1>
-        <p>Funktionsweise: Bei diesem Verfahren wird ein Kunststofffilament durch eine erhitzte Düse extrudiert und in Schichten aufgetragen, die nacheinander abkühlen und aushärten.</p>
-        <p>Materialien: Hauptsächlich thermoplastische Filamente wie PLA, ABS, PETG, Nylon und TPU.</p>
-        <p>Anwendungen: Prototypen, Haushaltsgegenstände, mechanische Bauteile, Hobby- und Modellbau.</p>
-        <p>Vorteile: Kostengünstig, viele Materialien verfügbar, gut für einfache bis komplexe Objekte geeignet.</p>
-        <p>Nachteile: Begrenzte Detailgenauigkeit, sichtbare Schichtlinien, oft nicht geeignet für filigrane Strukturen.</p>
-        <h1>2. Stereolithografie (SLA)</h1>
-        <p>Funktionsweise: SLA verwendet einen UV-Laser, um flüssiges Harz in einem Tank schichtweise zu härten. Der Laser „zeichnet“ dabei jede Schicht des Objekts, die dann aushärtet.</p>
-        <p>Materialien: Fotopolymerharze, die unter UV-Licht aushärten.</p>
-        <p>Anwendungen: Schmuck, medizinische Modelle, Dentalmodelle, detailreiche Prototypen.</p>
-        <p>Vorteile: Sehr hohe Detailgenauigkeit, glatte Oberflächen, ideal für filigrane Modelle.</p>
-        <p>Nachteile: Teureres Material, oft spröder als FDM-Teile, Nachbearbeitung erforderlich (Entfernen von Stützstrukturen, Nachhärten).</p>
-        <h1>3. Digital Light Processing (DLP)</h1>
-        <p>Funktionsweise: Ähnlich wie SLA, jedoch wird hier ein digitales Lichtprojektionssystem eingesetzt, das die gesamte Schicht auf einmal belichtet, anstatt sie mit einem Laser zu „zeichnen“.</p>
-        <p>Materialien: Fotopolymerharze.</p>
-        <p>Anwendungen: Schmuck, Zahntechnik, kleine und detaillierte Teile.</p>
-        <p>Vorteile: Schneller als SLA, da ganze Schichten gleichzeitig ausgehärtet werden, hohe Auflösung und Detailgenauigkeit.</p>
-        <p>Nachteile: Ähnlich wie SLA: sprödes Material, teurere Harze, Nachbearbeitung erforderlich.</p>
-        <h1>4. Selective Laser Sintering (SLS)</h1>
-        <p>Funktionsweise: Ein Laser sintert pulverförmiges Material (z. B. Nylon), indem er es punktgenau erhitzt und verschmilzt. Das Pulver dient gleichzeitig als Stützmaterial für komplexe Geometrien.</p>
-        <p>Materialien: Meist Polyamide (Nylon), manchmal auch Verbundwerkstoffe, TPU und Metalle (siehe SLM/DMLS).</p>
-        <p>Anwendungen: Funktionale Prototypen, komplexe Bauteile, Serienfertigung.</p>
-        <p>Vorteile: Keine Stützstrukturen notwendig, robustes Endprodukt, ideal für funktionale Teile und komplexe Formen.</p>
-        <p>Nachteile: Hohe Kosten, Nachbearbeitung notwendig, begrenzte Materialauswahl.
-        <h1>5. Selective Laser Melting (SLM) und Direct Metal Laser Sintering (DMLS)</h1>
-        <p>Funktionsweise: SLM und DMLS verwenden beide einen Laser, um Metallpulver Schicht für Schicht zu verschmelzen und metallische Bauteile herzustellen.</p>
-        <p>Materialien: Metalle wie Aluminium, Titan, Edelstahl und Cobalt-Chrom.
-        <p>Anwendungen: Luft- und Raumfahrt, Medizin, Automobilindustrie, Hochleistungsbauteile.</p>
-        <p>Vorteile: Sehr hohe Festigkeit und Temperaturbeständigkeit, komplexe Metallteile möglich, Endprodukte sind oft funktional einsetzbar.</p>
-        <p>Nachteile: Sehr teuer, spezielle Anforderungen an Ausrüstung und Sicherheit, Nachbearbeitung erforderlich.</p>
-        <h1>6. Multi Jet Fusion (MJF)</h1>
-        <p>Funktionsweise: MJF verwendet Tintenstrahldruckköpfe, um ein Bindemittel und Färbemittel auf eine Pulverschicht aufzutragen, die dann durch Infrarotlicht gehärtet wird.</p>
-        <p>Materialien: Meist Nylon und andere Polyamide.</p>
-        <p>Anwendungen: Funktionale Prototypen, Serienfertigung, komplexe Bauteile.</p>
-        <p>Vorteile: Hohe Detailgenauigkeit, glatte Oberflächen, schneller als SLS, keine Stützstrukturen.</p>
-        <p>Nachteile: Begrenzte Materialauswahl, hohe Kosten, spezielle Drucker erforderlich.</p>
-        <h1>7. PolyJet-Druck</h1>
-        <p>Funktionsweise: Ähnlich wie ein Tintenstrahldrucker wird hier ein flüssiges Polymer in Schichten aufgetragen und gleichzeitig mit UV-Licht gehärtet. Mehrere Materialien können gleichzeitig verwendet werden.</p>
-        <p>Materialien: Fotopolymere in verschiedenen Farben und Härtegraden.</p>
-        <p>Anwendungen: Modelle mit verschiedenen Materialeigenschaften, Prototypen, medizinische Modelle.</p>
-        <p>Vorteile: Hohe Detailgenauigkeit, verschiedene Materialien und Farben in einem Objekt kombinierbar.</p>
-        <p>Nachteile: Teuer, nicht für mechanisch belastbare Teile geeignet, Nachbearbeitung erforderlich.</p>
-        <h1>8. Binder Jetting</h1>
-        <p>Funktionsweise: Ähnlich wie MJF, nur dass hier ein Bindemittel auf Pulverschichten aufgetragen wird, das das Pulver lokal verbindet. Das Teil wird dann nachbearbeitet (z. B. gesintert oder gebrannt).</p>
-        <p>Materialien: Metallpulver, Sand, Keramik und Kunststoffe.</p>
-        <p>Anwendungen: Formen für den Guss, Keramiken, Metallteile.</p>
-        <p>Vorteile: Schnell, geeignet für große Mengen, vielseitige Materialauswahl.</p>
-        <p>Nachteile: Schwächere Teile als bei SLM/DMLS, zusätzliche Nachbearbeitung notwendig.</p>
-        <p>Die Wahl des Verfahrens hängt von den Anforderungen an das Endprodukt, dem Budget und den verwendeten Materialien ab.</p>
+<body class="content flex-container">
+    <a class="returnToPageLink" href="../../"><span class="material-symbols-outlined">arrow_back_ios</span>Zur Startseite</a>
+    <h1 class="main-title" style="word-break: break-all;">Druckmethoden</h1>
+    <h3 class="description">Es gibt verschiedene Wege, wie man von dem Rohmaterial zu einem gedruckten Objekt gelangt. Hier vergleichen wir die bekanntesten Druckmethoden.</h3>
+    
+    <h2 class="sub-title">1. Fused Deposition Modeling (FDM)</h2>
+    <p class="description">Das bekannteste Verfaren.<br> Bei dieser Methode wird ein Kunststofffilament durch eine erhitzte Düse extrudiert und in Schichten aufgetragen, die nacheinander abkühlen und aushärten.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Hauptsächlich thermoplastische Filamente wie PLA, ABS, PETG, Nylon und TPU.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Prototypen, Haushaltsgegenstände, mechanische Bauteile, Hobby- und Modellbau.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Kostengünstig, viele Materialien verfügbar, gut für einfache bis komplexe Objekte geeignet.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Begrenzte Detailgenauigkeit, sichtbare Schichtlinien, oft nicht geeignet für filigrane Strukturen.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="sub-title">2. Stereolithografie (SLA)</h2>
+    <p class="description">SLA verwendet einen UV-Laser, um flüssiges Harz in einem Tank schichtweise zu härten. Der Laser „zeichnet“ dabei jede Schicht des Objekts, die dann aushärtet.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Fotopolymerharze, die unter UV-Licht aushärten.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Schmuck, medizinische Modelle, Dentalmodelle, detailreiche Prototypen.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Sehr hohe Detailgenauigkeit, glatte Oberflächen, ideal für filigrane Modelle.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Teureres Material, oft spröder als FDM-Teile, Nachbearbeitung erforderlich.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="sub-title">3. Digital Light Processing (DLP)</h2>
+    <p class="description">Ähnlich wie SLA, jedoch wird hier ein digitales Lichtprojektionssystem eingesetzt, das die gesamte Schicht auf einmal belichtet, anstatt sie mit einem Laser zu „zeichnen“.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Fotopolymerharze.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Schmuck, Zahntechnik, kleine und detaillierte Teile.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Schneller als SLA, da ganze Schichten gleichzeitig ausgehärtet werden, hohe Auflösung und Detailgenauigkeit.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Ähnlich wie SLA: sprödes Material, teurere Harze, Nachbearbeitung erforderlich.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="sub-title">4. Selective Laser Sintering (SLS)</h2>
+    <p class="description">Ein Laser sintert pulverförmiges Material (z. B. Nylon), indem er es punktgenau erhitzt und verschmilzt. Das Pulver dient gleichzeitig als Stützmaterial für komplexe Geometrien.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Meist Polyamide (Nylon), manchmal auch Verbundwerkstoffe, TPU und Metalle (siehe SLM/DMLS).</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Funktionale Prototypen, komplexe Bauteile, Serienfertigung.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Keine Stützstrukturen notwendig, robustes Endprodukt, ideal für funktionale Teile und komplexe Formen.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Hohe Kosten, Nachbearbeitung notwendig, begrenzte Materialauswahl.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="sub-title">5. Selective Laser Melting (SLM) und Direct Metal Laser Sintering (DMLS)</h2>
+    <p class="description">SLM und DMLS verwenden beide einen Laser, um Metallpulver Schicht für Schicht zu verschmelzen und metallische Bauteile herzustellen.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Metalle wie Aluminium, Titan, Edelstahl und Cobalt-Chrom.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Luft- und Raumfahrt, Medizin, Automobilindustrie, Hochleistungsbauteile.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Sehr hohe Festigkeit und Temperaturbeständigkeit, komplexe Metallteile möglich, Endprodukte sind oft funktional einsetzbar.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Sehr teuer, spezielle Anforderungen an Ausrüstung und Sicherheit, Nachbearbeitung erforderlich.</td>
+            </tr>
+        </tbody>
+    </table>
+    <h2 class="sub-title">6. Multi Jet Fusion (MJF)</h2>
+    <p class="description">MJF verwendet Tintenstrahldruckköpfe, um ein Bindemittel und Färbemittel auf eine Pulverschicht aufzutragen, die dann durch Infrarotlicht gehärtet wird.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Meist Nylon und andere Polyamide.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Funktionale Prototypen, Serienfertigung, komplexe Bauteile.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Hohe Detailgenauigkeit, glatte Oberflächen, schneller als SLS, keine Stützstrukturen.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Begrenzte Materialauswahl, hohe Kosten, spezielle Drucker erforderlich.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2 class="sub-title">7. PolyJet-Druck</h2>
+    <p class="description">Ähnlich wie ein Tintenstrahldrucker wird hier ein flüssiges Polymer in Schichten aufgetragen und gleichzeitig mit UV-Licht gehärtet. Mehrere Materialien können gleichzeitig verwendet werden.</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Fotopolymere in verschiedenen Farben und Härtegraden.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Modelle mit verschiedenen Materialeigenschaften, Prototypen, medizinische Modelle.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Hohe Detailgenauigkeit, verschiedene Materialien und Farben in einem Objekt kombinierbar.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Teuer, nicht für mechanisch belastbare Teile geeignet, Nachbearbeitung erforderlich.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <h2 class="sub-title">8. Binder Jetting</h2>
+    <p class="description">Ähnlich wie MJF, nur dass hier ein Bindemittel auf Pulverschichten aufgetragen wird, das das Pulver lokal verbindet. Das Teil wird dann nachbearbeitet (z. B. gesintert oder gebrannt).</p>
+    <table class="info-table">
+        <thead>
+            <tr>
+                <th>Kategorie</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Materialien</td>
+                <td>Metallpulver, Sand, Keramik und Kunststoffe.</td>
+            </tr>
+            <tr>
+                <td>Anwendungen</td>
+                <td>Formen für den Guss, Keramiken, Metallteile.</td>
+            </tr>
+            <tr>
+                <td>Vorteile</td>
+                <td>Schnell, geeignet für große Mengen, vielseitige Materialauswahl.</td>
+            </tr>
+            <tr>
+                <td>Nachteile</td>
+                <td>Schwächere Teile als bei SLM/DMLS, zusätzliche Nachbearbeitung notwendig.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="filament-roll">
+        <img src="/media/filament-roll.png" alt="Filament Roll">
+        <div id="filamentpath"></div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Ferdinand & Marlon | <a href="/about">Über uns</a></p>
+    </footer>
 </body>
 </html>
-</
