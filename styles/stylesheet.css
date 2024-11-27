@@ -91,7 +91,7 @@ body, html {
     }
 }
 
-.maintitle {
+.main-title {
     font-family: "Sixtyfour Convergence", Arial; /* font looks like layer lines on 3d-prints */
     font-optical-sizing: auto;
     font-style: normal;
@@ -129,32 +129,6 @@ body, html {
     transform: translateY(0);
 }
 
-/* Kacheln */
-/*.tile-container {
-    display: grid;
-    grid-template-columns: auto; /*repeat(auto-fill, minmax(300px, 1fr))*//*
-    gap: 20px;
-    padding: 10%;
-    margin-bottom: 30px;
-    
-}
-.tile-container a {
-    text-decoration: none;
-    color: white;
-}
-
-.tile {
-    background-color: rgb(39, 39, 39);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-}
-
-.tile h2 {
-    margin-top: 0;
-}*/
-
-
 /* Benchy Comparison */
 
 #comparison {
@@ -167,7 +141,7 @@ body, html {
     padding-left: 0%;
     margin-bottom: 50px;
 }
-  
+
 #comparison figure {
     background-image: url(../media/benchy/good_benchy.png);
     background-size: cover;
@@ -188,6 +162,7 @@ body, html {
     background-color: #141414;
     background-image: url(../media/benchy/bad_benchy.png);
     background-size: cover;
+
     position: absolute;
     width: 50%;
     height: 100%;
@@ -210,10 +185,6 @@ body, html {
 /* Animated Categories */
 
 #category {
-    /*display: none;
-    position: fixed;
-    top: 20%;
-    left: 5%;*/
     width: 600px;
     max-width: 80vw;
     z-index: 100;
@@ -239,8 +210,8 @@ body, html {
     text-decoration: none;
 }
 
-#categoryPageLink:before {
-    content: '';
+#categoryPageLink:before { /* Rainbow border */
+    content: "";
     background: linear-gradient(45deg, #ff0000, 
     #ff7300, 
     #fffb00, 
@@ -286,7 +257,7 @@ body, html {
 }
 
 .keyframe {
-    margin-bottom: 400px;
+    margin-bottom: 400px; /* scrollable space between each category */
 }
 
 /* Footer */
