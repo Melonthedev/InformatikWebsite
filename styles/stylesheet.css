@@ -431,3 +431,19 @@ footer a:hover {
         width: 100%;
     }
 }
+
+.rotate {
+    animation: rotate 3s linear 1;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(100%);
+    }
+    50% {
+        transform: rotate(180deg) scale(10%);
+    }
+    100% {
+        transform: rotate(360deg) scale(100%);
+    }
+}
