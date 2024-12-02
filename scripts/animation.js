@@ -76,11 +76,13 @@ const containerObserver = new IntersectionObserver((entries) => {
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
-			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
+			document.querySelector("#animationcontainer ul").style.marginTop = (animationElement.clientHeight) + "px";
+			//animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
 			animationElement.style.position = "static";
-			animationContainer.style.marginBottom = "1000px";
+			document.querySelector("#animationcontainer ul").style.marginTop = "0px";
+			//animationContainer.style.marginBottom = "1000px";
 		}
     });
 }, { 
@@ -90,31 +92,27 @@ const containerObserver = new IntersectionObserver((entries) => {
 });
 containerObserver.observe(animationContainer);
 
-var passed = false;
 const keyframesObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-		if (!entry.isIntersecting) {
-			var index = entry.target.dataset.index;
-			if (entry.boundingClientRect.top < 0 && slideIndex != index) {
-				console.log("[Keyframe] Change to Slide " + index);
-				slideMap[index]();
-				slideIndex = index;
-			} else if (passed && index > 0 && slideIndex != (index - 1)) {
+		var index = entry.target.dataset.index;
+		if (entry.isIntersecting && entry.target.getBoundingClientRect().top > 0) {
+			console.log("[Keyframe] Change to Slide " + index);
+			slideMap[index]();
+			slideIndex = index;
+		} else {
+			if (entry.target.getBoundingClientRect().top > 0 && index > 0) {
 				index--;
-				console.log("[Keyframe] Change to Slide " + index);
+				console.log("[Keyframe] Change back to Slide " + index)
 				slideMap[index]();
 				slideIndex = index;
 			}
-			passed = false;
-		} else {
-			passed = true;
 		}
     });
 }, { 
     root: null,
-    threshold: 0,
-	rootMargin: '0px 0px -100% 0px'
+    threshold: 0
 });
+
 var keyframes = document.querySelectorAll(".keyframe");
 keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 
