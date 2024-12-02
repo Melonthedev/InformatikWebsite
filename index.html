@@ -53,12 +53,13 @@
         <img src="/media/filament_roll.png" alt="Filament Roll">
         <div id="filamentpath"></div>
       </div>
-    </div>-->
+    </div>
   </div>
   <footer>
     <p>&copy; 2024 Ferdinand & Marlon | <a href="./about">Über uns</a></p>
-  </footer>
+  </footer>-->
 
+  <!-- Scripts -->
   <script type="importmap">
     {
       "imports": {
@@ -68,27 +69,33 @@
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <!-- Hier mussten wir die animation.js von einem Server laden, da bei dem file:/// Protokoll keine korrekten CORS (Cross-Origin Resource Sharing) Header mitgesendet werden. -->
   <!-- <script type="module" src="./scripts/animation.js"></script> -->
   <script type="module" src="https://raw.githack.com/Melonthedev/InformatikWebsite/main/scripts/animation.js"></script>
-  <script> 
+
+  <script>
+    // Elements that appear when scrolled to
     const elements = document.querySelectorAll('.show-on-scroll');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting) 
           entry.target.classList.add('show');
-        }
       });
     }, {
       threshold: 0.4
     });
     elements.forEach(element => observer.observe(element));
   </script>
+
   <script>
+    // Benchy Comparison
     var comparison = document.getElementById("comparison");
     comparison.onmousemove = (e) => {
       var comparisonWidth = comparison.clientWidth;
       document.getElementById("divisor").style.width = (e.offsetX * 100 / comparisonWidth) + "%";
     };
   </script>
+
 </body>
 </html>

@@ -47,22 +47,18 @@ var benchy;
 loader.load('https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/3d_models/3d_benchy.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
-	model.position.x = 0.3;
+	model.position.x = 0.3; // Place Benchy directly under printer nozzle
 	model.position.y = 0.25;
 	model.position.z = -0.4;
 	model.scale.set(0.003, 0.003, 0.003);
 	model.rotation.y = 4;
 	benchy = model;
-	slideDefault();
-	var keyframes = document.querySelectorAll(".keyframe");
-keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 }, undefined, function (error) {
 	console.error(error);
 });
 
-
+// Handle Window Resize 
 window.addEventListener('resize', onWindowResize);
-	
 function onWindowResize() {
 	camera.aspect = window.innerWidth / window.innerHeight;
 	camera.updateProjectionMatrix();
@@ -72,6 +68,7 @@ function onWindowResize() {
 // Handle Slide Switching & Scrolling
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
+slideDefault();
 
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -79,7 +76,6 @@ const containerObserver = new IntersectionObserver((entries) => {
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
-			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
 			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
@@ -119,7 +115,8 @@ const keyframesObserver = new IntersectionObserver((entries) => {
     threshold: 0,
 	rootMargin: '0px 0px -100% 0px'
 });
-
+var keyframes = document.querySelectorAll(".keyframe");
+keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 
 function slideDefault() {
 	gsap.to(camera.position, {
@@ -134,12 +131,14 @@ function slideDefault() {
 		x: 0,
 		duration: 1.5
 	}); 
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
 	setSlideInfo("3D-Druck in 4 Kategorien", "Die wichtigsten Aspekte des 3D-Drucks in 4 Kategorien");
 }
 function slidePrintMethods() {
@@ -155,12 +154,14 @@ function slidePrintMethods() {
 		x: 0,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
 	setSlideInfo("Druckmethoden", "Überblick über die verschiedenen Verfahren des 3D-Drucks", "./sites/print-methods/index.html");
 }
 function slideAssembly() {
@@ -176,12 +177,14 @@ function slideAssembly() {
 		x: -1.3,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
 	setSlideInfo("Aufbau & Hardware", "Wie funktioniert das ganze eigentlich?", "./sites/printer-assembly/index.html");
 }
 function slideFilament() {
@@ -197,12 +200,14 @@ function slideFilament() {
 		x: 0,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
 	setSlideInfo("Filament", "Mit welchem Material kann gedruckt werden? Was sind Vor- und Nachteile?", "./sites/materials-filament/index.html");
 }
 function slideModels() {
@@ -218,12 +223,14 @@ function slideModels() {
 		x: -0.4,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: 0.8,
-		x: 0,
-		y: 1.3,
-		duration: 1.5
-	});
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: 0.8,
+			x: 0,
+			y: 1.3,
+			duration: 1.5
+		});
+	}
 	setSlideInfo("Druckablauf", "Wie geht man vor? Von der 3D-Datei zum Gegenstand", "./sites/3d-printing/index.html");
 }
 
