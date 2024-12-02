@@ -79,13 +79,11 @@ const containerObserver = new IntersectionObserver((entries) => {
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
-			category.style.display = "";
 			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
 			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
 			animationElement.style.position = "static";
-			//category.style.display = "none";
 			animationContainer.style.marginBottom = "1000px";
 		}
     });
@@ -231,8 +229,8 @@ function slideModels() {
 
 function setSlideInfo(title, details, pageLink) {
 	gsap.timeline().fromTo(category, 
-		{ position: "fixed", xPercent: 10, yPercent: 50, opacity: 1 }, 
-		{ position: "fixed", xPercent: -20, opacity: 0, duration: 0.5 })
+		{ xPercent: 10, yPercent: 50, opacity: 1 }, 
+		{ xPercent: -20, opacity: 0, duration: 0.5 })
 	.call(() => {
 		category.querySelector("#categoryTitle").innerText = title;
 		category.querySelector("#categoryDetails").innerText = details;
@@ -246,8 +244,8 @@ function setSlideInfo(title, details, pageLink) {
 		} 
 	})
 	.fromTo(category, 
-		{ position: "fixed", xPercent: 80, opacity: 0 }, 
-		{ position: "fixed", xPercent: 10, yPercent: 50, opacity: 1 }); 
+		{ xPercent: 80, opacity: 0 }, 
+		{ xPercent: 10, yPercent: 50, opacity: 1 }); 
 }
 
 
