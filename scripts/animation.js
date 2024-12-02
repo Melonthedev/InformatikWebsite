@@ -61,6 +61,14 @@ keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 });
 
 
+window.addEventListener('resize', onWindowResize);
+	
+function onWindowResize() {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
 // Handle Slide Switching & Scrolling
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
