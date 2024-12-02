@@ -5,8 +5,9 @@
 - Add Footer to all pages (with filament roll) (add return to home page) - DONE
 - About Page DONE
 - Add images and style to category pages - DONE (except for FILAMENT) DONE
+- ids for anchors of each category??? (e.g. /#printer-assembly)
 - Finally: 
-    - Check everything
+    - Check everything - Test on other machines - DONE
     - host animation.js on server to not be blocked by CORS when site opened over file:/// DONE
     - check links/src/etc DONE
     - remove playground, threejstest, obsolete code DONE

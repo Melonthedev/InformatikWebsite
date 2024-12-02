@@ -68,21 +68,17 @@ function onWindowResize() {
 // Handle Slide Switching & Scrolling
 var slideIndex = 0;
 var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, slideModels];
-slideDefault();
 
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-		//console.log(entry.boundingClientRect.top)
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
 			document.querySelector("#animationcontainer ul").style.marginTop = (animationElement.clientHeight) + "px";
-			//animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
         } else {
 			console.log("Animationcontainer ab")
 			animationElement.style.position = "static";
 			document.querySelector("#animationcontainer ul").style.marginTop = "0px";
-			//animationContainer.style.marginBottom = "1000px";
 		}
     });
 }, { 
@@ -100,7 +96,7 @@ const keyframesObserver = new IntersectionObserver((entries) => {
 			slideMap[index]();
 			slideIndex = index;
 		} else {
-			if (entry.target.getBoundingClientRect().top > 0 && index > 0) {
+			if (entry.target.getBoundingClientRect().top > 0 && index > 0 && slideIndex > 0) {
 				index--;
 				console.log("[Keyframe] Change back to Slide " + index)
 				slideMap[index]();
@@ -112,9 +108,12 @@ const keyframesObserver = new IntersectionObserver((entries) => {
     root: null,
     threshold: 0
 });
-
 var keyframes = document.querySelectorAll(".keyframe");
 keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
+
+
+slideDefault();
+
 
 function slideDefault() {
 	gsap.to(camera.position, {
