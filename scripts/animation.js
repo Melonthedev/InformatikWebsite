@@ -17,7 +17,7 @@ animationElement.appendChild(renderer.domElement);
 const planeGeometry = new THREE.PlaneGeometry(10, 10);
 //const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x142326 });
 const textureLoader = new THREE.TextureLoader();
-const planeTexture = textureLoader.load("/media/plate_texture.jpg")
+const planeTexture = textureLoader.load("https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/plate_texture.jpg")
 const planeMaterial = new THREE.MeshBasicMaterial({ map:  planeTexture});
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
@@ -35,7 +35,7 @@ scene.add(light);
 // Load Models
 const loader = new GLTFLoader();
 
-loader.load('/media/3d_models/3d_printer.glb', function (gltf) {
+loader.load('https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/3d_models/3d_printer.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
 	model.rotation.y = 4;
@@ -44,7 +44,7 @@ loader.load('/media/3d_models/3d_printer.glb', function (gltf) {
 });
 
 var benchy;
-loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
+loader.load('https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/3d_models/3d_benchy.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
 	model.position.x = 0.3;
