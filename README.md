@@ -9,7 +9,7 @@
     - Check everything
     - host animation.js on server to not be blocked by CORS when site opened over file:/// DONE
     - check links/src/etc DONE
-    - remove playground, threejstest, obsolete code
+    - remove playground, threejstest, obsolete code DONE
     - possibly add info text file in root folder
 
 ## Bugs:
