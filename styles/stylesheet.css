@@ -141,7 +141,6 @@ body, html {
 
 .image {
     max-width: 500px;
-    /* width: 100%; */
     border-radius: 10px;
     margin: 1rem;
 }
@@ -161,11 +160,22 @@ body, html {
 
 @media (max-width: 1000px) {
     .image-container {
-      flex-direction: column; /* Bild und Text untereinander */
-      align-items: center; /* Optional: Zentriert Inhalt horizontal */
+      flex-direction: column;
+      align-items: center;
     }
-  }
+}
 
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 300px;
+    width: 100%;
+    background: url("../media/banner.png") no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    filter: blur(5px);
+}
 
 .info-table {
     margin: 2rem auto;
@@ -279,6 +289,7 @@ body, html {
 /* Animated Categories */
 
 #category {
+    position: absolute;
     width: 600px;
     max-width: 80vw;
     z-index: 100;
@@ -343,7 +354,7 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    opacity: 1
+    opacity: 1;
 }
 
 #animationcontainer {
@@ -419,5 +430,21 @@ footer a:hover {
     100% {
         transform: translateY(20px); /* move "old" layer down */
         width: 100%;
+    }
+}
+
+.rotate {
+    animation: rotate 3s linear 1;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(100%);
+    }
+    50% {
+        transform: rotate(180deg) scale(10%);
+    }
+    100% {
+        transform: rotate(360deg) scale(100%);
     }
 }

@@ -17,7 +17,7 @@ animationElement.appendChild(renderer.domElement);
 const planeGeometry = new THREE.PlaneGeometry(10, 10);
 //const planeMaterial = new THREE.MeshStandardMaterial({ color: 0x142326 });
 const textureLoader = new THREE.TextureLoader();
-const planeTexture = textureLoader.load("/media/plate_texture.jpg")
+const planeTexture = textureLoader.load("https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/plate_texture.jpg")
 const planeMaterial = new THREE.MeshBasicMaterial({ map:  planeTexture});
 const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 plane.rotation.x = -Math.PI / 2;
@@ -35,7 +35,7 @@ scene.add(light);
 // Load Models
 const loader = new GLTFLoader();
 
-loader.load('/media/3d_models/3d_printer.glb', function (gltf) {
+loader.load('https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/3d_models/3d_printer.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
 	model.rotation.y = 4;
@@ -44,22 +44,26 @@ loader.load('/media/3d_models/3d_printer.glb', function (gltf) {
 });
 
 var benchy;
-loader.load('/media/3d_models/3d_benchy.glb', function (gltf) {
+loader.load('https://raw.githubusercontent.com/Melonthedev/InformatikWebsite/main/media/3d_models/3d_benchy.glb', function (gltf) {
 	var model = gltf.scene;
 	scene.add(model);
-	model.position.x = 0.3;
+	model.position.x = 0.3; // Place Benchy directly under printer nozzle
 	model.position.y = 0.25;
 	model.position.z = -0.4;
 	model.scale.set(0.003, 0.003, 0.003);
 	model.rotation.y = 4;
 	benchy = model;
-	slideDefault();
-	var keyframes = document.querySelectorAll(".keyframe");
-keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
 }, undefined, function (error) {
 	console.error(error);
 });
 
+// Handle Window Resize 
+window.addEventListener('resize', onWindowResize);
+function onWindowResize() {
+	camera.aspect = window.innerWidth / window.innerHeight;
+	camera.updateProjectionMatrix();
+	renderer.setSize(window.innerWidth, window.innerHeight);
+}
 
 // Handle Slide Switching & Scrolling
 var slideIndex = 0;
@@ -67,18 +71,14 @@ var slideMap = [slideDefault, slidePrintMethods, slideAssembly, slideFilament, s
 
 const containerObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-		//console.log(entry.boundingClientRect.top)
         if (entry.boundingClientRect.top <= 0) {
             console.log("Animationcontainer fixed to top");
 			animationElement.style.position = "fixed";
-			category.style.display = "";
-			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
-			animationContainer.style.marginBottom = (animationElement.clientHeight + 100) + "px";
+			document.querySelector("#animationcontainer ul").style.marginTop = (animationElement.clientHeight) + "px";
         } else {
 			console.log("Animationcontainer ab")
 			animationElement.style.position = "static";
-			//category.style.display = "none";
-			animationContainer.style.marginBottom = "1000px";
+			document.querySelector("#animationcontainer ul").style.marginTop = "0px";
 		}
     });
 }, { 
@@ -88,31 +88,31 @@ const containerObserver = new IntersectionObserver((entries) => {
 });
 containerObserver.observe(animationContainer);
 
-var passed = false;
 const keyframesObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-		if (!entry.isIntersecting) {
-			var index = entry.target.dataset.index;
-			if (entry.boundingClientRect.top < 0 && slideIndex != index) {
-				console.log("[Keyframe] Change to Slide " + index);
-				slideMap[index]();
-				slideIndex = index;
-			} else if (passed && index > 0 && slideIndex != (index - 1)) {
+		var index = entry.target.dataset.index;
+		if (entry.isIntersecting && entry.target.getBoundingClientRect().top > 0) {
+			console.log("[Keyframe] Change to Slide " + index);
+			slideMap[index]();
+			slideIndex = index;
+		} else {
+			if (entry.target.getBoundingClientRect().top > 0 && index > 0 && slideIndex > 0) {
 				index--;
-				console.log("[Keyframe] Change to Slide " + index);
+				console.log("[Keyframe] Change back to Slide " + index)
 				slideMap[index]();
 				slideIndex = index;
 			}
-			passed = false;
-		} else {
-			passed = true;
 		}
     });
 }, { 
     root: null,
-    threshold: 0,
-	rootMargin: '0px 0px -100% 0px'
+    threshold: 0
 });
+var keyframes = document.querySelectorAll(".keyframe");
+keyframes.forEach(keyframe => keyframesObserver.observe(keyframe));
+
+
+slideDefault();
 
 
 function slideDefault() {
@@ -128,12 +128,14 @@ function slideDefault() {
 		x: 0,
 		duration: 1.5
 	}); 
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
 	setSlideInfo("3D-Druck in 4 Kategorien", "Die wichtigsten Aspekte des 3D-Drucks in 4 Kategorien");
 }
 function slidePrintMethods() {
@@ -149,13 +151,15 @@ function slidePrintMethods() {
 		x: 0,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
-	setSlideInfo("Druckmethoden", "Überblick über die verschiedenen Verfahren des 3D-Drucks", "./sites/print-methods");
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
+	setSlideInfo("Druckmethoden", "Überblick über die verschiedenen Verfahren des 3D-Drucks", "./sites/print-methods/index.html");
 }
 function slideAssembly() {
 	gsap.to(camera.position, {
@@ -170,13 +174,15 @@ function slideAssembly() {
 		x: -1.3,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
-	setSlideInfo("Aufbau & Hardware", "Wie funktioniert das ganze eigentlich?", "./sites/printer-assembly");
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
+	setSlideInfo("Aufbau & Hardware", "Wie funktioniert das ganze eigentlich?", "./sites/printer-assembly/index.html");
 }
 function slideFilament() {
 	gsap.to(camera.position, {
@@ -191,13 +197,15 @@ function slideFilament() {
 		x: 0,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: -0.4,
-		x: 0.3,
-		y: 0.25,
-		duration: 1.5
-	});
-	setSlideInfo("Filament", "Mit welchem Material kann gedruckt werden? Was sind Vor- und Nachteile?", "./sites/materials-filament");
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: -0.4,
+			x: 0.3,
+			y: 0.25,
+			duration: 1.5
+		});
+	}
+	setSlideInfo("Filament", "Mit welchem Material kann gedruckt werden? Was sind Vor- und Nachteile?", "./sites/materials-filament/index.html");
 }
 function slideModels() {
 	gsap.to(camera.position, {
@@ -212,19 +220,21 @@ function slideModels() {
 		x: -0.4,
 		duration: 1.5
 	});
-	gsap.to(benchy.position, {
-		z: 0.8,
-		x: 0,
-		y: 1.3,
-		duration: 1.5
-	});
-	setSlideInfo("Druckablauf", "Wie geht man vor? Von der 3D-Datei zum Gegenstand", "./sites/3d-printing");
+	if (benchy != null) {
+		gsap.to(benchy.position, {
+			z: 0.8,
+			x: 0,
+			y: 1.3,
+			duration: 1.5
+		});
+	}
+	setSlideInfo("Druckablauf", "Wie geht man vor? Von der 3D-Datei zum Gegenstand", "./sites/3d-printing/index.html");
 }
 
 function setSlideInfo(title, details, pageLink) {
 	gsap.timeline().fromTo(category, 
-		{ position: "fixed", xPercent: 10, yPercent: 50, opacity: 1 }, 
-		{ position: "fixed", xPercent: -20, opacity: 0, duration: 0.5 })
+		{ xPercent: 10, yPercent: 50, opacity: 1 }, 
+		{ xPercent: -20, opacity: 0, duration: 0.5 })
 	.call(() => {
 		category.querySelector("#categoryTitle").innerText = title;
 		category.querySelector("#categoryDetails").innerText = details;
@@ -238,8 +248,8 @@ function setSlideInfo(title, details, pageLink) {
 		} 
 	})
 	.fromTo(category, 
-		{ position: "fixed", xPercent: 80, opacity: 0 }, 
-		{ position: "fixed", xPercent: 10, yPercent: 50, opacity: 1 }); 
+		{ xPercent: 80, opacity: 0 }, 
+		{ xPercent: 10, yPercent: 50, opacity: 1 }); 
 }
 
 

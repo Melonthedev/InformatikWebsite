@@ -9,38 +9,56 @@
         <title>Über Uns - 3D-Druck</title>
     </head>
 <body class="content flex-container">
-    <a class="returnToPageLink" href="../"><span class="material-symbols-outlined">arrow_back_ios</span>Zur Startseite</a>
-    <h1 class="main-title" style="word-break: break-all;">Über Uns</h1>
-    <h3 class="description">Es gibt verschiedene Wege, wie man von dem Rohmaterial zu einem gedruckten Objekt gelangt. Hier vergleichen wir die bekanntesten Druckmethoden.</h3>
-    
-    <h2 class="sub-title">1. Fused Deposition Modeling (FDM)</h2>
-    <p class="description">Das bekannteste Verfaren.<br> Bei dieser Methode wird ein Kunststofffilament durch eine erhitzte Düse extrudiert und in Schichten aufgetragen, die nacheinander abkühlen und aushärten.</p>
-    <table class="info-table">
-        <thead>
-            <tr>
-                <th>Kategorie</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Materialien</td>
-                <td>Hauptsächlich thermoplastische Filamente wie PLA, ABS, PETG, Nylon und TPU.</td>
-            </tr>
-            <tr>
-                <td>Anwendungen</td>
-                <td>Prototypen, Haushaltsgegenstände, mechanische Bauteile, Hobby- und Modellbau.</td>
-            </tr>
-            <tr>
-                <td>Vorteile</td>
-                <td>Kostengünstig, viele Materialien verfügbar, gut für einfache bis komplexe Objekte geeignet.</td>
-            </tr>
-            <tr>
-                <td>Nachteile</td>
-                <td>Begrenzte Detailgenauigkeit, sichtbare Schichtlinien, oft nicht geeignet für filigrane Strukturen.</td>
-            </tr>
-        </tbody>
-    </table>
-    
+    <a class="returnToPageLink" href="../index.html"><span class="material-symbols-outlined">arrow_back_ios</span>Zur Startseite</a>
+    <div class="banner"></div>
+    <h1 class="main-title">Über Uns</h1>
+    <h3 class="sub-title">Ferdinand & Marlon, 2 Schüler der Winfried Schule Fulda</h3>
+    <h3>Unser Projekt ist aufgrund unserer Leidenschaft für den 3D-Druck entstanden.</h3>
+    <h3>Als erstes entstanden wilde Skizzen</h3>
+    <img src="../media/sketch.png" alt="Skizze der ersten Website-Ideen" class="image image-box-shadow">
+    <h3>Die dann in die Realität umgesetzt wurden.</h3>
+    <h3>Dabei haben wir versucht, die Aufgaben gut einzuteilen:</h3>
+    <h1>Credits:</h1>
+    <div class="image-container">
+        <div class="floating-text">
+            <h2>Ferdinand</h2>
+            <p>Lead Content Manager</p>
+            <p>Director of Benchy Comparison</p>
+            <p>First 3D-Printing Information Department</p>
+            <p>Image Post Production</p>
+            <p>Filament Page Producer</p>
+            <p>Alpha Code Tester</p>
+        </div>
+        <div class="floating-text">
+            <h2>Marlon</h2>
+            <p>Lead Developer</p>
+            <p>Filament Footer Production & Design</p>
+            <p>Associate 3D-Printing Information Department</p>
+            <p>Lead Main Page Animation Director</p>
+            <p>Special Effects</p>
+            <p>Post-Production Code Cleanup</p>
+        </div>
+    </div>
+    <h2>Sources:</h2>
+    <a href="https://fonts.google.com/" class="description">Google Fonts - Icons & Fonts</a>
+    <a href="https://sketchfab.com/3d-models/3d-printer-9c393754e3fc4be0bda0fc5f4c6b883e" class="description">Sketchfab - 3D Models</a>
+    <a href="https://threejs.org/" class="description">three.js & GSAP - 3D Rendering & Animation Library</a>
+
+    <h2>Vielen Dank für ihre Aufmerksamkeit!</h2>
+
+
+    <div class="filament-roll">
+        <img src="../media/filament_roll.png" alt="Filament Roll">
+        <div id="filamentpath"></div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Ferdinand & Marlon | <a id="footereasteregg">Über uns</a></p>
+    </footer>
+    <script>
+        document.querySelector("#footereasteregg").onclick = (e) => {
+            document.querySelector("body").classList.toggle("rotate");
+            setTimeout(() => document.querySelector("body").classList.toggle("rotate"), 3000);
+        };
+    </script>
 </body>
 </html>
